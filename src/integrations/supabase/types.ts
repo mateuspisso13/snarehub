@@ -14,7 +14,163 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clients: {
+        Row: {
+          accent_color: string
+          created_at: string
+          id: string
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          accent_color?: string
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          accent_color?: string
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      plans: {
+        Row: {
+          client_id: string
+          created_at: string
+          id: string
+          month: number
+          share_token: string
+          status: string
+          title: string | null
+          updated_at: string
+          year: number
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          id?: string
+          month: number
+          share_token?: string
+          status?: string
+          title?: string | null
+          updated_at?: string
+          year: number
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          id?: string
+          month?: number
+          share_token?: string
+          status?: string
+          title?: string | null
+          updated_at?: string
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plans_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      posts: {
+        Row: {
+          approval_status: string
+          art_headline: string | null
+          art_subtitle: string | null
+          carousel_content: Json
+          channels: string[]
+          client_feedback: string | null
+          created_at: string
+          date_label: string | null
+          day_label: string | null
+          disclaimer: string | null
+          format: string | null
+          hashtags: string | null
+          id: string
+          ig_fb_caption: string | null
+          intention_pillar: string | null
+          linkedin_caption: string | null
+          plan_id: string
+          position: number
+          strategic_pillar: string | null
+          theme: string | null
+          updated_at: string
+          video_script: string | null
+          visual_suggestion: string | null
+        }
+        Insert: {
+          approval_status?: string
+          art_headline?: string | null
+          art_subtitle?: string | null
+          carousel_content?: Json
+          channels?: string[]
+          client_feedback?: string | null
+          created_at?: string
+          date_label?: string | null
+          day_label?: string | null
+          disclaimer?: string | null
+          format?: string | null
+          hashtags?: string | null
+          id?: string
+          ig_fb_caption?: string | null
+          intention_pillar?: string | null
+          linkedin_caption?: string | null
+          plan_id: string
+          position?: number
+          strategic_pillar?: string | null
+          theme?: string | null
+          updated_at?: string
+          video_script?: string | null
+          visual_suggestion?: string | null
+        }
+        Update: {
+          approval_status?: string
+          art_headline?: string | null
+          art_subtitle?: string | null
+          carousel_content?: Json
+          channels?: string[]
+          client_feedback?: string | null
+          created_at?: string
+          date_label?: string | null
+          day_label?: string | null
+          disclaimer?: string | null
+          format?: string | null
+          hashtags?: string | null
+          id?: string
+          ig_fb_caption?: string | null
+          intention_pillar?: string | null
+          linkedin_caption?: string | null
+          plan_id?: string
+          position?: number
+          strategic_pillar?: string | null
+          theme?: string | null
+          updated_at?: string
+          video_script?: string | null
+          visual_suggestion?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
